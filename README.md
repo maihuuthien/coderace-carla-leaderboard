@@ -32,7 +32,7 @@ First, you'll need to pull our docker image:
 docker pull maihuuthien/carla-leaderboard:coderace
 ```
 
-Next, either clone this Git repository, or copy the `docker-compose.yml` file into a folder of your choice, then
+Next, clone this Git repository and `cd` into the folder, then
 
 ```
 $ docker compose up --detach
@@ -90,15 +90,36 @@ Your mission, should you choose to accept it, is to improve our `/workspace/team
 
 ## 4. FAQ
 
-### 4.1. Debugging Tips
+### 4.1. Could not select device driver "nvidia"
 
-You can modify the `_visualize_on_carla` function in `/workspace/team_code/coderace_agent.py` to visualize anything that can help you debug. This function is also a good starting point to know what data you can extract from the objects.
+During launching of our docker container, you might get this error response from the docker daemon:
 
-![Visualize on Carla](./doc/images/visualize_on_carla.png)
+```
+Error response from daemon: could not select device driver "nvidia" with capabilities: [[gpu utility compute video]]
+```
 
-And of course, it's *Python*, so you can always add more `print` statements. :)
+then you need to add `nvidia-container-runtime` to the docker runtimes:
 
-### 4.2. Failure in Connecting to CARLA
+```
+$ sudo tee /etc/docker/daemon.json <<EOF
+{
+  "runtimes": {
+    "nvidia": {
+      "path": "/usr/bin/nvidia-container-runtime",
+      "runtimeArgs": []
+    }
+  }
+}
+EOF
+```
+
+A docker daemon restart is then in order:
+
+```
+sudo systemctl restart docker
+```
+
+### 4.2. Could not connect CARLA server
 
 You might need to change the `host` value in `/workspace/team_code/configs/config.yaml` to the correct IPv4 address of your host. A `localhost` value won't work, since it will be understood as *local* within the docker container environment.
 
@@ -106,7 +127,15 @@ You might need to change the `host` value in `/workspace/team_code/configs/confi
 
 > **Note:** Our default value `host.docker.internal` should work fine on the alternative WSL2 setup.
 
-### 4.3. Known Bugs
+### 4.3. Debugging Tips
+
+You can modify the `_visualize_on_carla` function in `/workspace/team_code/coderace_agent.py` to visualize anything that can help you debug. This function is also a good starting point to know what data you can extract from the objects.
+
+![Visualize on Carla](./doc/images/visualize_on_carla.png)
+
+And of course, it's *Python*, so you can always add more `print` statements. :)
+
+### 4.4. Known Bugs
 
 Upon the completion of all routes, somehow our code might get stuck and does not exit cleanly.
 

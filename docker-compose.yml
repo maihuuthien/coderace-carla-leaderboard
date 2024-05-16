@@ -10,6 +10,8 @@ services:
       - DISPLAY=$DISPLAY
       - CARLA_PORT=2000
     command: tail -f /dev/null
+    volumes:
+      - ./coderace:/workspace/team_code/coderace
     deploy:
       resources:
         reservations:

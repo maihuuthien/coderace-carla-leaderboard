@@ -29,7 +29,7 @@ Docker management is well supported by VSCode. We recommend these extensions:
 First, you'll need to pull our docker image:
 
 ```
-docker pull maihuuthien/carla-leaderboard:coderace
+$ docker pull maihuuthien/carla-leaderboard:coderace
 ```
 
 Next, clone this Git repository and `cd` into the folder, then
@@ -94,9 +94,7 @@ Your mission, should you choose to accept it, is to improve our `/workspace/team
 
 During launching of our docker container, you might get this error response from the docker daemon:
 
-```
-Error response from daemon: could not select device driver "nvidia" with capabilities: [[gpu utility compute video]]
-```
+> Error response from daemon: could not select device driver "nvidia" with capabilities: [[gpu utility compute video]]
 
 then you need to add `nvidia-container-runtime` to the docker runtimes:
 
@@ -116,7 +114,7 @@ EOF
 A docker daemon restart is then in order:
 
 ```
-sudo systemctl restart docker
+$ sudo systemctl restart docker
 ```
 
 ### 4.2. Could not connect CARLA server

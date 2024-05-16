@@ -26,7 +26,13 @@ Docker management is well supported by VSCode. We recommend these extensions:
 
 ## 2. Run the Challenge
 
-Either clone this Git repository, or copy the `docker-compose.yml` file into a folder of your choice, then
+First, you'll need to pull our docker image:
+
+```
+docker pull maihuuthien/carla-leaderboard:coderace
+```
+
+Next, either clone this Git repository, or copy the `docker-compose.yml` file into a folder of your choice, then
 
 ```
 $ docker compose up --detach

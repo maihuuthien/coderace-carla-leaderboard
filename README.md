@@ -74,7 +74,7 @@ and you shall see the challenge running.
 
 We have modified the [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard) source code specifically for this CodeRace competition. Our provided autonomous ego vehicle will drive through `10` different routes, filled with other NPC (Non-Player Character) vehicles. However, please note that we implemented our ego vehicle as a very simple path-tracking robot, with no consideration for obstacles. Therefore, it is expected that our ego vehicle will collide with other vehicles or static objects in the map layout, or even go out of its route lane. Such violations will incur penalties to the total score. Plese refer to the official [CARLA Leaderboard](https://leaderboard.carla.org/#evaluation-and-metrics) page for their scoring method.
 
-Upon completion of the evaluation, you shall find in `/workspace/team_code/coderace` directory the recorded video, along with a `stats.csv` file for a summary of your statistics:
+Upon completion of the evaluation, you shall find in the `coderace` folder the recorded video, along with a `stats.csv` file for a summary of your statistics:
 
 ![Statistics](./doc/images/stats.png)
 
@@ -133,10 +133,20 @@ You can modify the `_visualize_on_carla` function in `/workspace/team_code/coder
 
 And of course, it's *Python*, so you can always add more `print` statements. :)
 
-### 4.4. Known Bugs
+### 4.4. Change Route Order
 
-Upon the completion of all routes, somehow our code might get stuck and does not exit cleanly.
+To start the challenge at a specific town, you can change the town order in `/workspace/team_code/carla_interfaces/leaderboard/leaderboard/coderace_evaluator.py`:
+
+![Change town order](./doc/images/town_order.png)
+
+As for the route order of a town, e.g. `Town01`, just re-order the lines in `/workspace/team_code/carla_interfaces/leaderboard/leaderboard/scenarios/suite/coderace_Town01.txt`:
+
+![Change route order](./doc/images/route_order.png)
+
+### 4.5. Known Bugs
+
+Upon completion of all routes, somehow our code might get stuck and does not exit cleanly.
 
 ![Program does not exit](./doc/images/not_exiting.png)
 
-But don't worry, once you see the line `Registering the global statistics` on console log, then it's safe to stop the docker container, and you will still see the recorded video along with `stats.csv` in `/workspace/team_code/coderace` directory.
+But don't worry, once you see the line `Registering the global statistics` on console log, then it's safe to stop the docker container, and you will still see the recorded video along with `stats.csv` in the `coderace` folder.

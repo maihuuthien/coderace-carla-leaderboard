@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  coderace-dev:
+    image: maihuuthien/carla-leaderboard:coderace
+    container_name: coderace-dev
+    network_mode: host
+    privileged: true
+    environment:
+      - DISPLAY=$DISPLAY
+      - CARLA_PORT=2000
+    command: tail -f /dev/null
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities:
+              - gpu
+              - utility
+              - compute
+              - video

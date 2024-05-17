@@ -61,7 +61,7 @@ You should see some nice rendering by now. Go on, have fun navigating around by 
 Now, go back to your docker container, still in `/workspace/team_code` directory, simply call:
 
 ```
-$ sudo ./run.sh
+$ ./run.sh
 ```
 
 and you shall see the challenge running.
@@ -72,7 +72,7 @@ and you shall see the challenge running.
 
 ### 3.1. Evaluation and Metrics
 
-We have modified the [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard) source code specifically for this CodeRace competition. Our provided autonomous ego vehicle will drive through `10` different routes, filled with other NPC (Non-Player Character) vehicles. However, please note that we implemented our ego vehicle as a very simple path-tracking robot, with no consideration for obstacles. Therefore, it is expected that our ego vehicle will collide with other vehicles or static objects in the map layout, or even go out of its route lane. Such violations will incur penalties to the total score. Plese refer to the official [CARLA Leaderboard](https://leaderboard.carla.org/#evaluation-and-metrics) page for their scoring method.
+We have modified the [CARLA Leaderboard](https://github.com/carla-simulator/leaderboard) source code specifically for this CodeRace competition. Our provided autonomous ego vehicle will drive through `10` different routes, filled with other NPC (Non-Player Character) vehicles. However, please note that we implemented our ego vehicle as a very simple path-tracking robot, with no consideration for obstacles. Therefore, it is expected that our ego vehicle will collide with other vehicles or static objects in the map layout, or even go out of its route lane. Such violations will incur penalties to the total score. Please refer to the official [CARLA Leaderboard](https://leaderboard.carla.org/#evaluation-and-metrics) page for their scoring method.
 
 Upon completion of the evaluation, you shall find in the `coderace` folder the recorded video, along with a `stats.csv` file for a summary of your statistics:
 

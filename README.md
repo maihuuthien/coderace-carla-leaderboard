@@ -78,9 +78,11 @@ Upon completion of the evaluation, you shall find in the `coderace` folder the r
 
 ![Statistics](./doc/images/stats.png)
 
-You may notice that we added a little twist here, by the `score_over_duration` column. That's how we differentiate between the ones who play *too* safe, and ones that can adapt their ego vehicle to various situations. In other words, how *fast* you complete a route also counts.
+You may notice that we added a little twist here, by the `score_over_time` column. That's how we differentiate between the ones who play *too* safe, and ones that can adapt their ego vehicle to various situations. In other words, how *fast* you complete a route also counts.
 
-Your final score will be an average of the `score_over_duration` from each route: `SUM(K2:K11)/10`
+> **Note:** In case your ego vehicle failed to complete the route due to a collision, `score_over_time` will be computed as `(score / route_timeout)`. Otherwise you might *accidentally* get higher score by crashing too soon.
+
+Your final score will be an average of the `score_over_time` from each route: `SUM(L2:L11)/10`
 
 ### 3.2. Your Mission
 
@@ -143,7 +145,7 @@ As for the route order of a town, e.g. `Town01`, just re-order the lines in `/wo
 
 ![Change route order](./doc/images/route_order.png)
 
-### 4.5. Known Bugs
+### 4.5. Known Issues
 
 Upon completion of all routes, somehow our code might get stuck and does not exit cleanly.
 
